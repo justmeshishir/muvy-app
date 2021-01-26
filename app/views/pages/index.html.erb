@@ -4,3 +4,7 @@
   <%= text_field(:url, :youtube)  %>
   <%= submit_tag 'Submit' %>
 <% end %>
+
+<% unless @image_url.nil? %>
+  <%= image_tag @image_url %>
+<% end %>
