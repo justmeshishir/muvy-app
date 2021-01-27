@@ -1,29 +1,38 @@
-<h3>Paste youtube URL:</h3>
+<div class="container">
+  <h3>Paste youtube URL:</h3>
 
-<%= form_tag pages_path do %>
-  <%= text_field(:url, :youtube)  %>
-  <h3>Select Your Options</h3>
-  <div>
-    <%= label_tag :style, 'Style' %>
-    <%= select_tag :style, options_for_select(%i[ solid stretch]) %>
-  </div>
-  <div>
-    <%= label_tag :gradient, 'Gradient' %>
-    <%= select_tag :gradient, options_for_select(%i[black:heavy black:medium, black:light white:heavy white:medium white:light]) %>
-  </div>
+  <%= form_tag pages_path do %>
+    <%= text_field :url, :youtube, class: 'form-control col-6'  %>
+    <br />
+    <h3>Select Your Options</h3>
+    <div class="form-row">
+      <div class="col-3">
+        <%= label_tag :style, 'Style' %>
+        <%= select_tag :style, options_for_select(%i[ solid stretch]), class: 'form-control' %>
+      </div>
+      <div class="col-3">
+        <%= label_tag :gradient, 'Gradient' %>
+        <%= select_tag :gradient, options_for_select(%i[black:heavy black:medium black:light white:heavy white:medium white:light]), class: 'form-control' %>
+      </div>
+    </div>
+    <br />
+    <div class="form-row">
+      <div class="col-3">
+        <%= label_tag :arc, 'Arc' %>
+        <%= select_tag :arc, options_for_select(%i[circle iris]), include_blank: true, class: 'form-control' %>
+      </div>
 
-  <div>
-    <%= label_tag :arc, 'Arc' %>
-    <%= select_tag :arc, options_for_select(%i[circle iris]), include_blank: true %>
-  </div>
-
-  <div>
-    <%= label_tag :height, 'Height' %>
-    <%= number_field_tag :height, '100', min: 100, max: 1000%>
-  </div>
-  <%= submit_tag 'Submit' %>
-<% end %>
-
-<% unless @image_url.nil? %>
-  <%= image_tag @image_url %>
-<% end %>
+      <div class="col-3">
+        <%= label_tag :height, 'Height' %>
+        <%= number_field_tag :height, '100', min: 100, max: 1000, class: 'form-control'%>
+      </div>
+    </div>
+    <br />
+    <%= submit_tag 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+  <br />
+  <h3>Your Result</h3>
+  <% unless @image_url.nil? %>
+    <%= image_tag @image_url %>
+  <% end %>
+</div>
