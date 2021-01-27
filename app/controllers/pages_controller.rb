@@ -10,15 +10,9 @@ class PagesController < ApplicationController
   end
 
   def create
-    muvy = Muvy::Media.new(params[:url][:youtube], { tmp_dir: 'public/uploads/5/', path: 'public/uploads/5/' }.merge(params.permit(:style, :gradient, :arc, :height))).run
+    options = { tmp_dir: 'public/uploads/5/', path: 'public/uploads/5/' }.merge(params.permit(:style, :gradient, :arc, :height))
+    options = options.reject {|k,v| v.blank? }
+    Muvy::Media.new(params[:url][:youtube], options.symbolize_keys).run
     redirect_to root_path
-  end
-
-  # def show
-  #   @muvy = Muvy::Image.new('public/uploads/', {path: })
-  # end
-  #
-  def test
-
   end
 end
