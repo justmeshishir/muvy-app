@@ -2,6 +2,25 @@
 
 <%= form_tag pages_path do %>
   <%= text_field(:url, :youtube)  %>
+  <h3>Select Your Options</h3>
+  <div>
+    <%= label_tag :style, 'Style' %>
+    <%= select_tag "style", options_for_select(%i[ solid stretch]) %>
+  </div>
+  <div>
+    <%= label_tag :gradient, 'Gradient' %>
+    <%= select_tag "Gradient", options_for_select(%i[black:heavy black:medium, black:light white:heavy white:medium white:light]) %>
+  </div>
+
+  <div>
+    <%= label_tag :arc, 'Arc' %>
+    <%= select_tag "arc", options_for_select(%i[circle iris]) %>
+  </div>
+
+  <div>
+    <%= label_tag :height, 'Height' %>
+    <%= number_field_tag "height", '100', min: 100, max: 1000%>
+  </div>
   <%= submit_tag 'Submit' %>
 <% end %>
 
